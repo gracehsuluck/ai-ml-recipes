@@ -1,3 +1,12 @@
+/* @datacloud.settings
+{
+  "version": 1,
+  "service": "SPARK",
+  "connectionInfo": {},
+  "dialect": "ANSI_SQL"
+}
+*/
+
 -- ============================================================================
 -- 1. BRONZE LAYER: Raw Ingestion Tables (Untrusted Source Material)
 -- ============================================================================

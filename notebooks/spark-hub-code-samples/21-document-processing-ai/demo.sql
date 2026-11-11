@@ -18,7 +18,7 @@ CREATE NAMESPACE IF NOT EXISTS procurement;
 CREATE OR REPLACE TEMPORARY VIEW raw_vendor_docs
 USING binaryFile
 OPTIONS (
-  path "gs://orionis-lakehouse-landing/vendor_invoices/*.pdf"
+  path "gs://YOUR_GCS_BUCKET/vendor_invoices/*.pdf"
 );
 
 -- Step 2: Parse raw unstructured PDF binaries into structured text and tables

@@ -23,7 +23,7 @@ USE lakehouse_samples;
 
 CREATE NAMESPACE IF NOT EXISTS ecommerce;
 
-CREATE TABLE IF NOT EXISTS ecommerce.orion_orders
+CREATE OR REPLACE TABLE ecommerce.orion_orders
 USING iceberg
 AS SELECT * FROM raw_orders WHERE created_at < '2023-11-01';
 
@@ -39,7 +39,7 @@ OPTIONS (
 USE lakehouse_samples;
 
 ALTER TABLE ecommerce.orion_orders 
-CREATE BRANCH blackfriday_promo;
+CREATE OR REPLACE BRANCH blackfriday_promo;
 
 -- Step 3: Insert new batch records directly into the branch
 INSERT INTO ecommerce.orion_orders.branch_blackfriday_promo
@@ -72,4 +72,4 @@ SELECT 'production_main' AS target, COUNT(*) AS record_count
 FROM ecommerce.orion_orders;
 
 -- Step 7: Clean up branch metadata
-ALTER TABLE ecommerce.orion_orders DROP BRANCH blackfriday_promo;
+ALTER TABLE ecommerce.orion_orders DROP BRANCH IF EXISTS blackfriday_promo;

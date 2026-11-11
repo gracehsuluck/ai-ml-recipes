@@ -1,3 +1,12 @@
+/* @datacloud.settings
+{
+  "version": 1,
+  "service": "SPARK",
+  "connectionInfo": {},
+  "dialect": "ANSI_SQL"
+}
+*/
+
 -- ============================================================================
 -- LEGACY MONOLITHIC PIPELINE (DO NOT EDIT - FRAGILE NIGHTLY JOB)
 -- File: legacy_daily_sales.sql

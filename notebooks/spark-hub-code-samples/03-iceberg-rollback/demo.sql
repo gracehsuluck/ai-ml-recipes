@@ -42,9 +42,9 @@ AS SELECT * FROM raw_bq_order_items;
 -- Step 1: Record baseline state & latest snapshot ID
 
 SELECT 
-  snapshot_id AS baseline_snapshot_id, 
+  CAST(snapshot_id AS STRING) AS baseline_snapshot_id, 
   committed_at, 
-  summary['operation'] AS operation,
+  operation,
   summary['total-records'] AS total_records
 FROM ecommerce.orion_order_items.snapshots
 ORDER BY committed_at DESC 
@@ -83,14 +83,14 @@ SELECT
   CAST(snapshot_id AS STRING) AS snapshot_id_str, 
   CAST(parent_id AS STRING) AS parent_id_str, 
   committed_at, 
-  summary['operation'] AS op,
+  operation AS op,
   summary['total-records'] AS total_records
 FROM ecommerce.orion_order_items.snapshots
 ORDER BY committed_at DESC;
 
 -- Step 5: Execute zero-copy instant rollback to parent snapshot
 -- Pass the parent_id identified in Step 5 (or the baseline_snapshot_id from Step 2)
-CALL system.rollback_to_snapshot(
+CALL lakehouse_samples.system.rollback_to_snapshot(
   table => 'lakehouse_samples.ecommerce.orion_order_items', 
   snapshot_id => 1314150840314849959 -- Replace with actual baseline snapshot_id bigint
 );

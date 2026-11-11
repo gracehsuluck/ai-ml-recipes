@@ -1,3 +1,12 @@
+/* @datacloud.settings
+{
+  "version": 1,
+  "service": "SPARK",
+  "connectionInfo": {},
+  "dialect": "ANSI_SQL"
+}
+*/
+
 -- ============================================================================
 -- 5. BUSINESS INTELLIGENCE VERIFICATION
 -- ============================================================================
